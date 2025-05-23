@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+    color: white;
+    font-size: 18px;
+}
+
+.content {
+    padding: 20px;
+}
+
+h1 {
+    text-transform: capitalize;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+li.no-decoration{
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.home {
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    color:black;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}

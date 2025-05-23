@@ -1,0 +1,23 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+    <div class="pages">
+        <h1>get list example</h1>
+        <p>Click to start this awesome adventure</p>
+        <ul>
+            {% for dataObject in data %}
+                <li>{{ dataObject }}</li>
+                <li class="no-decoration">
+                    <ul>
+                        <li>id: {{ dataObject.id }}</li>
+                        <li>name: {{ dataObject.name }}</li>
+                        <li>color: {{ dataObject.data.color }}</li>
+                        <li>capacity: {{ dataObject.data.capacity }}</li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/dashboard"> 
+            <button>back to dashboard</button> 
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+    <div class="pages">
+        <h1>get id example</h1>
+        <p>Click to start this awesome adventure</p>
+        <ul>
+            <li>{{ data }}</li>
+            <li class="no-decoration">
+                <ul>
+                    <li>id: {{ data.id }}</li>
+                    <li>name: {{ data.name }}</li>
+                    <li>color: {{ data.data.color }}</li>
+                    <li>capacity: {{ data.data.capacity }}</li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/dashboard"> 
+            <button>back to dashboard</button> 
+        </a>
+    </div>
+{% endblock %}
