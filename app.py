@@ -1,13 +1,7 @@
-from flask import Flask, render_template, redirect, url_for
-import requests
-import json
-
-class Api():
-    headers = {"content-type": "application/json"}
-    baseUrl = "https://api.restful-api.dev/"
+from flask import Flask, render_template
+from models.database import Database
 
 app = Flask(__name__)
-api = Api()
 
 
 @app.route("/")
@@ -22,51 +16,94 @@ def dashboard():
 def fileExample():
     return render_template("pages/file_example.html")
 
-@app.route("/update-example")
-def updateExample():
-    requestUrl = api.baseUrl + "/objects/7"
-    payload    = json.dumps({ "name": "Apple AirPods hhhhh", "data": { "color": "white", "generation": "3rd", "price": 135}})
-    response   = requests.put(requestUrl, headers=api.headers, data=payload)
+# @app.route("/update-example")
+# def updateExample():
+#     requestUrl = api.baseUrl + "/objects/7"
+#     response   = requests.get(requestUrl, headers=api.headers)
 
-    return render_template("pages/update_example.html", data=json.loads(response.content))
+#     return render_template("pages/update_example.html", data=json.loads(response.content))
 
-@app.route("/patch-example")
-def patchExample():
-    requestUrl = api.baseUrl + "/objects/7"
-    payload    = json.dumps({ "name": "Apple AirPods hhhhh" })
-    response   = requests.patch(requestUrl, headers=api.headers, data=payload)
+# @app.route("/submit-update", methods=['POST'])
+# def submitUpdateExample():
+#     item = { 
+#         "name" : request.form['name'], 
+#         "data" : { 
+#             "color"      : request.form['color'], 
+#             "generation" : request.form['generation'], 
+#             "capacity"   : request.form['capacity'], 
+#             "price"      : request.form['price']
+#         }
+#     }
 
-    return render_template("pages/update_example.html", data=json.loads(response.content))
+#     requestUrl = api.baseUrl + "/objects/" + createFakeItem(item)
+#     payload    = json.dumps(item)
+#     response   = requests.put(requestUrl, headers=api.headers, data=payload)
+
+#     return render_template("pages/submit/update_example.html", data=json.loads(response.content))
+
+# def createFakeItem(item):
+#     # fake object need to be created to modify
+#     # only fake created items can be edited
+#     requestUrl = api.baseUrl + "/objects"
+#     payload    = json.dumps(item)
+#     response   = requests.post(requestUrl, headers=api.headers, data=payload)
+#     postData   = json.loads(response.content)
+#     # fake object need to be created to modify
+
+#     return postData['id']
+
+# @app.route("/patch-example")
+# def patchExample():
+#     requestUrl = api.baseUrl + "/objects/7"
+#     payload    = json.dumps({ "name": "Apple AirPods hhhhh" })
+#     response   = requests.patch(requestUrl, headers=api.headers, data=payload)
+
+#     return render_template("pages/update_example.html", data=json.loads(response.content))
 
 @app.route("/get-list-example")
 def getListExample():
-    requestUrl = api.baseUrl + "/objects"
-    response = requests.get(requestUrl, headers=api.headers)
+    db     = Database()
+    query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet;"
+    result = db.getData(query)    
 
-    return render_template("pages/get_list_example.html", data=json.loads(response.content))
+    return render_template("pages/get_list_example.html", data=result)
 
-@app.route("/get-id-example")
-def getExample():
-    requestUrl = api.baseUrl + "/objects/7"
-    response   = requests.get(requestUrl, headers=api.headers)
+@app.route("/get-id-example/<id>")
+def getExample(id):
+    db     = Database()
+    query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet where id = %s;" %id
+    result = db.getData(query)    
 
-    return render_template("pages/get_id_example.html", data=json.loads(response.content))
+    return render_template("pages/get_id_example.html", data=result[0])
 
-@app.route("/post-example")
-def postExample():
-    requestUrl = api.baseUrl + "/objects"
-    payload    = json.dumps({ "name": "Apple AirPods hhhhh", "data": { "color": "white", "generation": "3rd", "price": 135}})
-    response   = requests.post(requestUrl, headers=api.headers, data=payload)
+# @app.route("/post-example")
+# def postExample():
+#     return render_template("pages/post_example.html")
 
-    return render_template("pages/post_example.html", data=json.loads(response.content))
+# @app.route("/submit-post", methods=['POST'])
+# def submitPostExample():
+#     item = { 
+#         "name" : request.form['name'], 
+#         "data" : { 
+#             "color"      : request.form['color'], 
+#             "generation" : request.form['generation'], 
+#             "capacity"   : request.form['capacity'], 
+#             "price"      : request.form['price']
+#         }
+#     }
+    
+#     requestUrl = api.baseUrl + "/objects"
+#     payload    = json.dumps(item)
+#     response   = requests.post(requestUrl, headers=api.headers, data=payload)
 
-@app.route("/delete-example")
-def deleteExample():
-    requestUrl = api.baseUrl + "/objects/7"
-    response   = requests.patch(requestUrl, headers=api.headers)
+#     return render_template("pages/submit/post_example.html", data=json.loads(response.content))
 
-    return render_template("pages/delete_example.html", data=json.loads(response.content))
+# @app.route("/delete-example")
+# def deleteExample():
+#     requestUrl = api.baseUrl + "/objects/7"
+#     response   = requests.patch(requestUrl, headers=api.headers)
 
+#     return render_template("pages/delete_example.html", data=json.loads(response.content))
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
