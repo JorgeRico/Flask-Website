@@ -6,35 +6,21 @@
 
 
 {% block content %}
-    <div class="pages">
-        <p>Click to start this awesome adventure</p>
-        <form method="POST" action="/submit-post">
-            <label>name</label>
-            <div>
-                <input type="text" name="name" placeholder="name" value="" required>
-            </div>
-            <label>color</label>
-            <div>
-                <input type="text" name="color" placeholder="color" value="" required>
-            </diV>
-            <label>generation</label>
-            <div>
-                <input type="text" name="generation" placeholder="generation" value="" required>
-            </diV>
-            <label>capacity</label>
-            <div>
-                <input type="text" name="capacity" placeholder="capacity" value="" required>
-            </diV>
-            <label>price</label>
-            <div>
-                <input type="text" name="price" placeholder="price" value="" required>
-            </diV>
-
-            <button type="submit">Submit form</button>
-        </form>
-        
-        <a href="/dashboard"> 
-            <button>start</button> 
-        </a>
+    {% include "pages/back_button.html" %}
+    <div class="p20 col-lg-12">
+        <div class="mb40">Add new Object to DB content:</div>
+        <div class="col-lg-6">
+            <form method="POST" action="/submit-post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Write set name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="numCards" class="form-label">Num cards</label>
+                    <input type="text" class="form-control" id="numCards" name="numCards" placeholder="Write set number of cards" required>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Submit form</button>
+            </form>
+        </div>
     </div>
 {% endblock %}
