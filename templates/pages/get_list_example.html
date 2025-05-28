@@ -1,7 +1,11 @@
 {% extends "layout/layout.html" %}
+
+{% block title %}Get list example{% endblock %}
+
+{% block header %}Get list example{% endblock %}
+
 {% block content %}
     <div class="pages">
-        <h1>get list example</h1>
         <p>Click to start this awesome adventure</p>
         <ul>
             {% for dataObject in data %}
@@ -10,8 +14,7 @@
                     <ul>
                         <li>id: {{ dataObject.id }}</li>
                         <li>name: {{ dataObject.name }}</li>
-                        <li>color: {{ dataObject.data.color }}</li>
-                        <li>capacity: {{ dataObject.data.capacity }}</li>
+                        <li>num cards: {{ dataObject.numCards }}</li>
                     </ul>
                 </li>
             {% endfor %}

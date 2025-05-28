@@ -1,25 +1,29 @@
 {% extends "layout/layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}Different options{% endblock %}
+
 {% block content %}
     <div class="pages">
-        <h1>Different options</h1>
-        <ul>
-            <li>
-                <a href="/get-list-example">GET list example</a>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="/get-list-example">GET list example</a>
             </li>
-            <li>
-                <a href="/get-id-example">GET id example</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/get-id-example/3">GET id example</a>
             </li>
-            <li>
-                <a href="/post-example">POST example</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/post-example">POST example</a>
             </li>
-            <li>
-                <a href="/update-example">UPDATE example</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/update-example">UPDATE example</a>
             </li>
-            <li>
-                <a href="/delete-example">DELETE example</a>
+            <li class="nav-item">
+                <a class="nav-link" href="/delete-example">DELETE example</a>
             </li>
-            <li>
-                <a href="/file-example">File example</a>
+            <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">File example</a>
             </li>
         </ul>
     </div>

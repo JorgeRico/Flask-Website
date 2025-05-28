@@ -1,11 +1,38 @@
 {% extends "layout/layout.html" %}
+
+{% block title %}Post example{% endblock %}
+
+{% block header %}Post example{% endblock %}
+
+
 {% block content %}
     <div class="pages">
-        <h1>post example</h1>
         <p>Click to start this awesome adventure</p>
-        <ul>
-            <li>{{ data }}</li>
-        </ul>
+        <form method="POST" action="/submit-post">
+            <label>name</label>
+            <div>
+                <input type="text" name="name" placeholder="name" value="" required>
+            </div>
+            <label>color</label>
+            <div>
+                <input type="text" name="color" placeholder="color" value="" required>
+            </diV>
+            <label>generation</label>
+            <div>
+                <input type="text" name="generation" placeholder="generation" value="" required>
+            </diV>
+            <label>capacity</label>
+            <div>
+                <input type="text" name="capacity" placeholder="capacity" value="" required>
+            </diV>
+            <label>price</label>
+            <div>
+                <input type="text" name="price" placeholder="price" value="" required>
+            </diV>
+
+            <button type="submit">Submit form</button>
+        </form>
+        
         <a href="/dashboard"> 
             <button>start</button> 
         </a>

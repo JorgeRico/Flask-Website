@@ -1,10 +1,14 @@
 {% extends "layout/layout.html" %}
+
+{% block title %}Welcome to Test website{% endblock %}
+
+{% block header %}Welcome to Test website{% endblock %}
+
 {% block content %}
     <div class="home">
-        <h1>Welcome to Test website</h1>
         <p>Click to start this awesome adventure</p>
         <a href="/dashboard"> 
-            <button>start</button> 
+            <button type="button" class="btn btn-light">start</button> 
         </a>
     </div>
 {% endblock %}

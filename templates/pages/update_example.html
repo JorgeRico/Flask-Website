@@ -1,8 +1,41 @@
 {% extends "layout/layout.html" %}
+
+{% block title %}Item updated example{% endblock %}
+
+{% block header %}Item updated example{% endblock %}
+
+
 {% block content %}
     <div class="pages">
-        <h1>update example</h1>
         <p>Click to start this awesome adventure</p>
+        <form method="POST" action="/submit-update">
+            <label>name</label>
+            <div>
+                <input type="text" name="id" placeholder="id" value="{{ data.id }}" disabled>
+            </div>
+            <label>name</label>
+            <div>
+                <input type="text" name="name" placeholder="name" value="{{ data.name }}" required>
+            </div>
+            <label>color</label>
+            <div>
+                <input type="text" name="color" placeholder="color" value="{{ data.data.color }}" required>
+            </div>
+            <label>generation</label>
+            <div>
+                <input type="text" name="generation" placeholder="generation" value="{{ data.data.generation }}" required>
+            </div>
+            <label>capacity</label>
+            <div>
+                <input type="text" name="capacity" placeholder="capacity" value="{{ data.data.capacity }}" required>
+            </diV>
+            <label>price</label>
+            <div>
+                <input type="text" name="price" placeholder="price" value="{{ data.data.price }}" required>
+            </div>
+            
+            <button type="submit">Submit form</button>
+        </form>
         <a href="/dashboard"> 
             <button>start</button> 
         </a>

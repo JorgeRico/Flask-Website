@@ -1,7 +1,11 @@
 {% extends "layout/layout.html" %}
+
+{% block title %}Get by id Example{% endblock %}
+
+{% block header %}Get by id Example{% endblock %}
+
 {% block content %}
     <div class="pages">
-        <h1>get id example</h1>
         <p>Click to start this awesome adventure</p>
         <ul>
             <li>{{ data }}</li>
@@ -9,8 +13,7 @@
                 <ul>
                     <li>id: {{ data.id }}</li>
                     <li>name: {{ data.name }}</li>
-                    <li>color: {{ data.data.color }}</li>
-                    <li>capacity: {{ data.data.capacity }}</li>
+                    <li>num cards: {{ data.numCards }}</li>
                 </ul>
             </li>
         </ul>
