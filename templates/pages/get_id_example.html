@@ -5,20 +5,14 @@
 {% block header %}Get by id Example{% endblock %}
 
 {% block content %}
-    <div class="pages">
-        <p>Click to start this awesome adventure</p>
+    {% include "pages/back_button.html" %}
+    <div class="p20 col-lg-12">
+        <div>Object id: {{ data.id }} (id hardcoded on url)</div>
+        <div class="mb40">Object DB content: {{ data }}</div>
         <ul>
-            <li>{{ data }}</li>
-            <li class="no-decoration">
-                <ul>
-                    <li>id: {{ data.id }}</li>
-                    <li>name: {{ data.name }}</li>
-                    <li>num cards: {{ data.numCards }}</li>
-                </ul>
-            </li>
+            <li>id: {{ data.id }}</li>
+            <li>name: {{ data.name }}</li>
+            <li>num cards: {{ data.numCards }}</li>
         </ul>
-        <a href="/dashboard"> 
-            <button>back to dashboard</button> 
-        </a>
     </div>
 {% endblock %}

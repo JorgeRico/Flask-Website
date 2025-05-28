@@ -5,27 +5,26 @@
 {% block header %}Item updated example{% endblock %}
 
 {% block content %}
-    <div class="pages">
-        <p>Click to start this awesome adventure</p>
-        <form method="POST" action="/submit-update">
-            {{ data}}
-            <label>name</label>
-            <div>
-                <input type="text" name="id" placeholder="id" value="{{ data.id }}" required>
-            </div>
-            <label>name</label>
-            <div>
-                <input type="text" name="name" placeholder="name" value="{{ data.name }}" required>
-            </div>
-            <label>num cards</label>
-            <div>
-                <input type="text" name="numCards" placeholder="num cards" value="{{ data.numCards }}" required>
-            </div>
-            
-            <button type="submit">Submit form</button>
-        </form>
-        <a href="/dashboard"> 
-            <button>start</button> 
-        </a>
+    {% include "pages/back_button.html" %}
+    <div class="p20 col-lg-12">
+        <div>Object id: {{ data.id }} (id hardcoded on previous link url)</div>
+        <div class="mb40">Object DB content: {{ data }}</div>
+        <div class="col-lg-6">
+            <form method="POST" action="/submit-update">
+                <div class="mb-3">
+                    <label for="id" class="form-label">Id</label>
+                    <input type="text" class="form-control-plaintext" id="id" name="id" value="{{ data.id }}" placeholder="Write set id" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ data.name }}" placeholder="Write set name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="numCards" class="form-label">Num cards</label>
+                    <input type="text" class="form-control" id="numCards" name="numCards" value="{{ data.numCards }}" placeholder="Write set number of cards" required>
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Submit form</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

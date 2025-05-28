@@ -58,6 +58,17 @@ input {
     padding: 20px;
 }
 
+.mb40 {
+    margin-bottom: 40px;
+}
+
 ul {
     list-style: circle !important;
+}
+
+.form-control-plaintext {
+    background-color: lightgrey;
+    padding: .375rem .75rem;
+    border-radius: 5px;
+    cursor: not-allowed;
 }

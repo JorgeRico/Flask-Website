@@ -5,8 +5,9 @@
 {% block header %}Get list example{% endblock %}
 
 {% block content %}
-    <div class="pages">
-        <p>Click to start this awesome adventure</p>
+    {% include "pages/back_button.html" %}
+    <div class="p20 col-lg-12">
+        <div class="mb40">Objects on DB:</div>
         <ul>
             {% for dataObject in data %}
                 <li>{{ dataObject }}</li>
@@ -19,8 +20,5 @@
                 </li>
             {% endfor %}
         </ul>
-        <a href="/dashboard"> 
-            <button>back to dashboard</button> 
-        </a>
     </div>
 {% endblock %}
