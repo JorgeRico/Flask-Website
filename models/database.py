@@ -17,12 +17,11 @@ class Database():
 
         return conn
 
-    def getData(self, query):
+    def getJsonData(self, query):
         try:
             conn   = self.connect()
-            print(conn)
             cursor = conn.cursor()
-            cursor.execute(query)
+            result = cursor.execute(query)
             # json array
             rows = [x for x in cursor]
             cols = [x[0] for x in cursor.description]
@@ -32,9 +31,23 @@ class Database():
                 for prop, val in zip(cols, row):
                     res[prop] = val
                 result.append(res)
-                print(result)
-
+            
             return result
+        except mysql.connector.Error as err:
+            # return jsonify({'error': str(err)})
+            return err
+        finally:
+            if 'cursor' in locals():
+                cursor.close()
+            if 'conn' in locals() and conn.is_connected():
+                conn.close()
+
+    def updateData(self, query):
+        try:
+            conn   = self.connect()
+            cursor = conn.cursor()
+            cursor.execute(query)
+            conn.commit()
         except mysql.connector.Error as err:
             # return jsonify({'error': str(err)})
             return err

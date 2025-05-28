@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from models.database import Database
 
 app = Flask(__name__)
@@ -16,30 +16,27 @@ def dashboard():
 def fileExample():
     return render_template("pages/file_example.html")
 
-# @app.route("/update-example")
-# def updateExample():
-#     requestUrl = api.baseUrl + "/objects/7"
-#     response   = requests.get(requestUrl, headers=api.headers)
+@app.route("/update-example")
+def updateExample():
+    db     = Database()
+    query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet where id = 2;"
+    result = db.getJsonData(query)   
 
-#     return render_template("pages/update_example.html", data=json.loads(response.content))
+    return render_template("pages/update_example.html", data=result[0])
 
-# @app.route("/submit-update", methods=['POST'])
-# def submitUpdateExample():
-#     item = { 
-#         "name" : request.form['name'], 
-#         "data" : { 
-#             "color"      : request.form['color'], 
-#             "generation" : request.form['generation'], 
-#             "capacity"   : request.form['capacity'], 
-#             "price"      : request.form['price']
-#         }
-#     }
+@app.route("/submit-update", methods=['POST'])
+def submitUpdateExample():
+    item = {
+        "id"       : request.form['id'], 
+        "name"     : request.form['name'], 
+        "numCards" :  request.form['numCards']
+    }
 
-#     requestUrl = api.baseUrl + "/objects/" + createFakeItem(item)
-#     payload    = json.dumps(item)
-#     response   = requests.put(requestUrl, headers=api.headers, data=payload)
+    db    = Database()
+    query = "UPDATE mtgSet SET id = %s, name = '%s', numCards = %s where id = %s;" %(request.form['id'], request.form['name'], request.form['numCards'], request.form['id'])
+    db.updateData(query)
 
-#     return render_template("pages/submit/update_example.html", data=json.loads(response.content))
+    return render_template("pages/submit/update_example.html", data=item)
 
 # def createFakeItem(item):
 #     # fake object need to be created to modify
@@ -64,7 +61,7 @@ def fileExample():
 def getListExample():
     db     = Database()
     query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet;"
-    result = db.getData(query)    
+    result = db.getJsonData(query)
 
     return render_template("pages/get_list_example.html", data=result)
 
@@ -72,7 +69,7 @@ def getListExample():
 def getExample(id):
     db     = Database()
     query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet where id = %s;" %id
-    result = db.getData(query)    
+    result = db.getJsonData(query)
 
     return render_template("pages/get_id_example.html", data=result[0])
 

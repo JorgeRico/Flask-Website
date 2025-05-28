@@ -4,34 +4,22 @@
 
 {% block header %}Item updated example{% endblock %}
 
-
 {% block content %}
     <div class="pages">
         <p>Click to start this awesome adventure</p>
         <form method="POST" action="/submit-update">
+            {{ data}}
             <label>name</label>
             <div>
-                <input type="text" name="id" placeholder="id" value="{{ data.id }}" disabled>
+                <input type="text" name="id" placeholder="id" value="{{ data.id }}" required>
             </div>
             <label>name</label>
             <div>
                 <input type="text" name="name" placeholder="name" value="{{ data.name }}" required>
             </div>
-            <label>color</label>
+            <label>num cards</label>
             <div>
-                <input type="text" name="color" placeholder="color" value="{{ data.data.color }}" required>
-            </div>
-            <label>generation</label>
-            <div>
-                <input type="text" name="generation" placeholder="generation" value="{{ data.data.generation }}" required>
-            </div>
-            <label>capacity</label>
-            <div>
-                <input type="text" name="capacity" placeholder="capacity" value="{{ data.data.capacity }}" required>
-            </diV>
-            <label>price</label>
-            <div>
-                <input type="text" name="price" placeholder="price" value="{{ data.data.price }}" required>
+                <input type="text" name="numCards" placeholder="num cards" value="{{ data.numCards }}" required>
             </div>
             
             <button type="submit">Submit form</button>
