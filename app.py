@@ -32,14 +32,6 @@ def submitUpdateExample():
 
     return render_template("pages/submit/update_example.html", data=setObject)
 
-# @app.route("/patch-example")
-# def patchExample():
-#     requestUrl = api.baseUrl + "/objects/7"
-#     payload    = json.dumps({ "name": "Apple AirPods hhhhh" })
-#     response   = requests.patch(requestUrl, headers=api.headers, data=payload)
-
-#     return render_template("pages/update_example.html", data=json.loads(response.content))
-
 @app.route("/get-list-example")
 def getListExample():
     query  = Query()

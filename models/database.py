@@ -63,9 +63,7 @@ class Database():
             cursor = conn.cursor()
             cursor.execute(query)
             conn.commit()
-            # res = 
 
-            # print(res)
             return cursor.lastrowid
         except mysql.connector.Error as err:
             # return jsonify({'error': str(err)})
