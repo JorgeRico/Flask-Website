@@ -17,10 +17,6 @@ a:hover {
     text-decoration: underline;
 }
 
-li {
-    margin-bottom: 10px;
-}
-
 li.no-decoration{
     list-style: none;
     margin-bottom: 30px;
@@ -28,30 +24,6 @@ li.no-decoration{
 
 .home {
     text-align: center;
-}
-
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-label {
-    position: relative;
-    float: left;
-    width: 100%;
-    margin-bottom: 5px;
-}
-
-form div {
-    position: relative;
-    float: left;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-input {
-    padding: 10px 20px;
 }
 
 .p20 {
@@ -62,8 +34,16 @@ input {
     margin-bottom: 40px;
 }
 
-ul {
-    list-style: circle !important;
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.ml40 {
+    margin-left: 40px
+}
+
+ul.dashboard {
+    list-style: lower-alpha !important;
 }
 
 .form-control-plaintext {

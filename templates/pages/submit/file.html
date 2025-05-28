@@ -1,0 +1,14 @@
+{% extends "layout/layout.html" %}
+
+{% block title %}Submit File Upload Example{% endblock %}
+
+{% block header %}Submit File Upload Example{% endblock %}
+
+{% block content %}
+    {% include "pages/utils/back_button.html" %}
+    <div class="p20 col-lg-12">
+        <div class="mb20">File uploaded: {{ data }}</div>
+        <div class="mb40">Added on folder: static/uploads/ </div>
+        <a href="{{ url_for('static', filename='uploads/'+data) }}" target="_BLANK">{{ data }}</a>
+    </div>
+{% endblock %}

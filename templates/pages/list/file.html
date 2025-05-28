@@ -6,5 +6,36 @@
 
 {% block content %}
     {% include "pages/utils/back_button.html" %}
-    <div class="p20 col-lg-12">file example</div>
+    <div class="p20 col-lg-12">
+        <div class="mb20">Example files to upload:</div>
+        <div class="mb40">
+            <ul>
+                <li>
+                    <a href="{{ url_for('static', filename='files/file_example.jpg') }}" target="_BLANK">file_example.jpg</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('static', filename='files/file_example.json') }}" target="_BLANK">file_example.json</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('static', filename='files/file_sample.doc') }}" target="_BLANK">file_sample.doc</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('static', filename='files/file_sample.pdf') }}" target="_BLANK">file_sample.pdf</a>
+                </li>
+            </ul>
+        </div>
+        <form action="/submit-upload-file-example" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="uploadFile">Upload file input</label>
+                <input type="file" name="file" class="form-control-file" id="file">
+                <input type="hidden" name="id" value="1">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload file</button>
+        </form>
+        
+        
+        
+        
+        
+    </div>
 {% endblock %}

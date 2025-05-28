@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from models.queries import Query
 from models.setObject import SetObject
+from models.files import File
 
 app = Flask(__name__)
 
@@ -13,9 +14,17 @@ def home():
 def dashboard():
     return render_template("pages/dashboard.html")
 
-@app.route("/file-example")
+@app.route("/upload-file-example")
 def fileExample():
     return render_template("pages/list/file.html")
+
+@app.route("/submit-upload-file-example", methods=['POST'])
+def submitFileExample():
+    if 'file' in request.files:
+        file     = File()
+        filename = file.uploadFile(request.files['file'])
+
+    return render_template("pages/submit/file.html", data=filename)
 
 @app.route("/update-example")
 def updateExample():
