@@ -56,3 +56,22 @@ class Database():
                 cursor.close()
             if 'conn' in locals() and conn.is_connected():
                 conn.close()
+
+    def insertData(self, query):
+        try:
+            conn   = self.connect()
+            cursor = conn.cursor()
+            cursor.execute(query)
+            conn.commit()
+            # res = 
+
+            # print(res)
+            return cursor.lastrowid
+        except mysql.connector.Error as err:
+            # return jsonify({'error': str(err)})
+            return err
+        finally:
+            if 'cursor' in locals():
+                cursor.close()
+            if 'conn' in locals() and conn.is_connected():
+                conn.close()

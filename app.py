@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
-from models.database import Database
+from models.queries import Query
+from models.setObject import SetObject
 
 app = Flask(__name__)
 
@@ -18,36 +19,18 @@ def fileExample():
 
 @app.route("/update-example")
 def updateExample():
-    db     = Database()
-    query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet where id = 2;"
-    result = db.getJsonData(query)   
-
-    return render_template("pages/update_example.html", data=result[0])
+    query  = Query()
+    result = query.selectByIdQuery(2)
+    
+    return render_template("pages/update_example.html", data=result)
 
 @app.route("/submit-update", methods=['POST'])
 def submitUpdateExample():
-    item = {
-        "id"       : request.form['id'], 
-        "name"     : request.form['name'], 
-        "numCards" :  request.form['numCards']
-    }
+    setObject = SetObject(request.form['id'], request.form['name'], request.form['numCards'])
+    query     = Query()
+    query.updateQuery(request.form['id'], request.form['name'], request.form['numCards'])
 
-    db    = Database()
-    query = "UPDATE mtgSet SET id = %s, name = '%s', numCards = %s where id = %s;" %(request.form['id'], request.form['name'], request.form['numCards'], request.form['id'])
-    db.updateData(query)
-
-    return render_template("pages/submit/update_example.html", data=item)
-
-# def createFakeItem(item):
-#     # fake object need to be created to modify
-#     # only fake created items can be edited
-#     requestUrl = api.baseUrl + "/objects"
-#     payload    = json.dumps(item)
-#     response   = requests.post(requestUrl, headers=api.headers, data=payload)
-#     postData   = json.loads(response.content)
-#     # fake object need to be created to modify
-
-#     return postData['id']
+    return render_template("pages/submit/update_example.html", data=setObject)
 
 # @app.route("/patch-example")
 # def patchExample():
@@ -59,41 +42,29 @@ def submitUpdateExample():
 
 @app.route("/get-list-example")
 def getListExample():
-    db     = Database()
-    query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet;"
-    result = db.getJsonData(query)
+    query  = Query()
+    result = query.selectListTable()
 
     return render_template("pages/get_list_example.html", data=result)
 
 @app.route("/get-id-example/<id>")
 def getExample(id):
-    db     = Database()
-    query  = "SELECT id as id, name as name, numCards as numCards FROM mtgSet where id = %s;" %id
-    result = db.getJsonData(query)
+    query  = Query()
+    result = query.selectByIdQuery(id)
 
-    return render_template("pages/get_id_example.html", data=result[0])
+    return render_template("pages/get_id_example.html", data=result)
 
-# @app.route("/post-example")
-# def postExample():
-#     return render_template("pages/post_example.html")
+@app.route("/post-example")
+def postExample():
+    return render_template("pages/post_example.html")
 
-# @app.route("/submit-post", methods=['POST'])
-# def submitPostExample():
-#     item = { 
-#         "name" : request.form['name'], 
-#         "data" : { 
-#             "color"      : request.form['color'], 
-#             "generation" : request.form['generation'], 
-#             "capacity"   : request.form['capacity'], 
-#             "price"      : request.form['price']
-#         }
-#     }
-    
-#     requestUrl = api.baseUrl + "/objects"
-#     payload    = json.dumps(item)
-#     response   = requests.post(requestUrl, headers=api.headers, data=payload)
+@app.route("/submit-post", methods=['POST'])
+def submitPostExample():
+    query     = Query()
+    result    = query.insertQuery(request.form['name'], request.form['numCards'])
+    setObject = SetObject(result, request.form['name'], request.form['numCards'])
 
-#     return render_template("pages/submit/post_example.html", data=json.loads(response.content))
+    return render_template("pages/submit/post_example.html", data=setObject)
 
 # @app.route("/delete-example")
 # def deleteExample():
