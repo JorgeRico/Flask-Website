@@ -6,9 +6,26 @@
 
 {% block content %}
     <div class="home">
-        <p>Click to start this awesome adventure</p>
+        <p>Website to test Flask and jinja2 template integration</p>
+        <ul>
+            <li>
+                Flask: <a href="https://flask.palletsprojects.com/en/stable/" target="_BLANK">Flask website</a>
+            </li>
+            <li>
+                Jinja: <a href="https://jinja.palletsprojects.com/en/stable/templates/" target="_BLANK">Jinja website</a>
+            </li>
+        </ul>
+        <p>In this demo we can check:</p>
+        <ul class="text-start">
+            <li>Flask on Doker</li>
+            <li>Mysql on Docker</li>
+            <li>Flask Template routing</li>
+            <li>Flask simple form actions</li>
+            <li>File uploading</li>
+        </ul>
+        <p class="mb20">Click to start this awesome adventure</p>
         <a href="/dashboard"> 
-            <button type="button" class="btn btn-light">start</button> 
+            <button type="button" class="btn btn-light">let's go!</button> 
         </a>
     </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends "layout/layout.html" %}
+{% extends "layout/layout-pages.html" %}
 
 {% block title %}Submit post Example{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block content %}
     {% include "pages/utils/back_button.html" %}
     <div class="p20 col-lg-12">
-        <div class="mb40">Result on DB: {{ data }}</div>
+        <div class="mb20">Result on DB: <span class=bdObject>{{ data }}</span></div>
         <ul>
             <li>id: {{ data.id }}</li>
             <li>name: {{ data.name }}</li>

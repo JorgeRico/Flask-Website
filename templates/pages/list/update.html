@@ -1,4 +1,4 @@
-{% extends "layout/layout.html" %}
+{% extends "layout/layout-pages.html" %}
 
 {% block title %}Item updated example{% endblock %}
 
@@ -8,7 +8,7 @@
     {% include "pages/utils/back_button.html" %}
     <div class="p20 col-lg-12">
         <div>Object id: {{ data.id }} (id hardcoded on previous link url)</div>
-        <div class="mb40">Object DB content: {{ data }}</div>
+        <div class="mb20">Object DB content: <span class="bdObject">{{ data }}</span></div>
         <div class="col-lg-6">
             <form method="POST" action="/submit-update">
                 <div class="mb-3">

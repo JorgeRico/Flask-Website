@@ -24,18 +24,39 @@ li.no-decoration{
 
 .home {
     text-align: center;
+
+    & ul {
+        width: fit-content;
+        margin: 0 auto 40px auto;
+    }
 }
 
 .p20 {
     padding: 20px;
 }
 
-.mb40 {
-    margin-bottom: 40px;
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
 }
 
 .mb20 {
     margin-bottom: 20px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.ml30 {
+    margin-left: 30px;
 }
 
 .ml40 {
@@ -51,4 +72,17 @@ ul.dashboard {
     padding: .375rem .75rem;
     border-radius: 5px;
     cursor: not-allowed;
+}
+
+.deleted {
+    color: red;
+}
+
+.bdObject {
+    color: green;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    padding: 10px 15px;
+    border: 1px solid lightgray;
 }

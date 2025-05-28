@@ -1,4 +1,4 @@
-{% extends "layout/layout.html" %}
+{% extends "layout/layout-pages.html" %}
 
 {% block title %}Delete example{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block content %}
     {% include "pages/utils/back_button.html" %}
     <div class="p20 col-lg-12">
-        <div class="mb40">Object id: {{ data.id }} (id hardcoded on previous link url)</div>
+        <div class="mb20">Object id: {{ data.id }} (id hardcoded on previous link url)</div>
         <ul>
             <li>id: {{ data.id }}</li>
             <li>name: {{ data.name }}</li>

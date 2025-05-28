@@ -1,4 +1,4 @@
-{% extends "layout/layout.html" %}
+{% extends "layout/layout-pages.html" %}
 
 {% block title %}Get list example{% endblock %}
 
@@ -7,17 +7,37 @@
 {% block content %}
     {% include "pages/utils/back_button.html" %}
     <div class="p20 col-lg-12">
-        <div class="mb40">Objects on DB:</div>
+        <div class="mb20">
+            <h3>Object Table list stored on DB:</h3>
+        </div>
+        <table>
+            <th>id</th>
+            <th>name</th>
+            <th>num cards</th>
+            <th>deleted</th>
+            {% for dataObject in data %}
+            <tr>
+                {% if dataObject.deleted == 1 %}
+                    <td class="deleted">{{ dataObject.id }}</td>
+                    <td class="deleted">{{ dataObject.name }}</td>
+                    <td class="deleted">{{ dataObject.numCards }}</td>
+                    <td class="deleted">{{ dataObject.deleted }}</td>
+                {% else %} 
+                    <td>{{ dataObject.id }}</td>
+                    <td>{{ dataObject.name }}</td>
+                    <td>{{ dataObject.numCards }}</td>
+                    <td>{{ dataObject.deleted }}</td>
+                {% endif %}        
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="mb20">
+            <h3>Object list stored on DB:</h3>
+        </div>
         <ul>
             {% for dataObject in data %}
-                <li>{{ dataObject }}</li>
-                <li class="no-decoration">
-                    <ul>
-                        <li>id: {{ dataObject.id }}</li>
-                        <li>name: {{ dataObject.name }}</li>
-                        <li>num cards: {{ dataObject.numCards }}</li>
-                        <li>deleted: {{ dataObject.deleted }}</li>
-                    </ul>
+                <li class="mb10">Object info: 
+                    <span class=bdObject>{{ dataObject }}</span>
                 </li>
             {% endfor %}
         </ul>

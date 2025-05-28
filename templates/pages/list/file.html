@@ -1,4 +1,4 @@
-{% extends "layout/layout.html" %}
+{% extends "layout/layout-pages.html" %}
 
 {% block title %}File Example{% endblock %}
 
@@ -7,6 +7,7 @@
 {% block content %}
     {% include "pages/utils/back_button.html" %}
     <div class="p20 col-lg-12">
+        <div class="mb20">Upload a File and store on Filesystem:</div>
         <div class="mb20">Example files to upload:</div>
         <div class="mb40">
             <ul>
@@ -30,12 +31,7 @@
                 <input type="file" name="file" class="form-control-file" id="file">
                 <input type="hidden" name="id" value="1">
             </div>
-            <button type="submit" class="btn btn-primary">Upload file</button>
+            <button type="submit" class="mt20 btn btn-primary">Upload file</button>
         </form>
-        
-        
-        
-        
-        
     </div>
 {% endblock %}
