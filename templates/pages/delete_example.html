@@ -6,5 +6,16 @@
 
 {% block content %}
     {% include "pages/back_button.html" %}
-    <div class="p20 col-lg-12">delete example</div>
+    <div class="p20 col-lg-12">
+        <div class="mb40">Object id: {{ data.id }} (id hardcoded on previous link url)</div>
+        <ul>
+            <li>id: {{ data.id }}</li>
+            <li>name: {{ data.name }}</li>
+            <li>num cards: {{ data.numCards }}</li>
+        </ul>
+        <form method="POST" action="/submit-delete">
+            <input type="hidden" id="id" name="id" value="{{ data.id }}">
+            <button type="submit" class="btn btn-primary mb-3">Delete item</button>
+        </form>
+    </div>
 {% endblock %}

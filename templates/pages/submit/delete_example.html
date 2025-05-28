@@ -1,0 +1,18 @@
+{% extends "layout/layout.html" %}
+
+{% block title %}Submit post Example{% endblock %}
+
+{% block header %}Submit post Example{% endblock %}
+
+{% block content %}
+    {% include "pages/back_button.html" %}
+    <div class="p20 col-lg-12">
+        <div>Item deleted on DB: {{ data }}</div>
+        <div class="mb40">Mark on DB as deleted: 1</div>
+        <ul>
+            <li>id: {{ data.id }}</li>
+            <li>name: {{ data.name }}</li>
+            <li>num cards: {{ data.numCards }}</li>
+        </ul>
+    </div>
+{% endblock %}

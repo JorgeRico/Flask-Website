@@ -54,16 +54,28 @@ def postExample():
 def submitPostExample():
     query     = Query()
     result    = query.insertQuery(request.form['name'], request.form['numCards'])
+    # get item info
     setObject = SetObject(result, request.form['name'], request.form['numCards'])
 
     return render_template("pages/submit/post_example.html", data=setObject)
 
-# @app.route("/delete-example")
-# def deleteExample():
-#     requestUrl = api.baseUrl + "/objects/7"
-#     response   = requests.patch(requestUrl, headers=api.headers)
+@app.route("/delete-example/<id>")
+def deleteExample(id):
+    query  = Query()
+    result = query.selectByIdQuery(id)
 
-#     return render_template("pages/delete_example.html", data=json.loads(response.content))
+    return render_template("pages/delete_example.html", data=result)
+
+@app.route("/submit-delete", methods=['POST'])
+def submitDeleteExample():
+    query  = Query()
+
+    # delete
+    result = query.deleteQuery(request.form['id'])
+    # get item info - mark as deleted but not deleted from DB
+    result = query.selectByIdQuery(request.form['id'])
+    
+    return render_template("pages/submit/delete_example.html", data=result)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
