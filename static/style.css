@@ -4,16 +4,12 @@ body {
     font-size: 18px;
 }
 
-.content {
-    padding: 20px;
-}
-
 h1 {
     text-transform: capitalize;
 }
 
 a {
-    color: white;
+    color: white !important;
     text-decoration: none;
 }
 
@@ -37,14 +33,31 @@ li.no-decoration{
 button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    color:black;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: black;
-    color: white;
+label {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+form div {
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px 20px;
+}
+
+.p20 {
+    padding: 20px;
+}
+
+ul {
+    list-style: circle !important;
 }
